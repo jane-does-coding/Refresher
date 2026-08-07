@@ -149,6 +149,25 @@
 	border-color: color-mix(in srgb, var(--color-choco) 28%, transparent);
 }
 
+/*
+ * Cross-hatching: the same set of pencil strokes laid down twice, at opposing
+ * diagonals, so they criss-cross. Tinted to whichever accent is live. Each
+ * layer is kept light because they double up where they cross.
+ */
+.hatch {
+	background-image:
+		repeating-linear-gradient(
+			45deg,
+			color-mix(in srgb, var(--accent) 16%, transparent) 0 0.22vh,
+			transparent 0.22vh 1.2vh
+		),
+		repeating-linear-gradient(
+			-45deg,
+			color-mix(in srgb, var(--accent) 16%, transparent) 0 0.22vh,
+			transparent 0.22vh 1.2vh
+		);
+}
+
 /* a strip of washi tape */
 .tape {
 	background: color-mix(in srgb, var(--accent) 55%, #fff);

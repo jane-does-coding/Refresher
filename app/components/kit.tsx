@@ -49,7 +49,7 @@ export function StepHead({
 	return (
 		<div className="flex shrink-0 flex-col items-center gap-[0.7vh] text-center">
 			{label && (
-				<span className="flex items-center gap-[0.9vw] text-[1.55vh] leading-none tracking-[0.3em] text-choco/45 uppercase">
+				<span className="flex items-center gap-[0.9vw] text-[1.55vh] leading-none text-choco/45 capitalize">
 					<span className="h-[0.2vh] w-[3.5vh] bg-choco/20" />
 					<span
 						style={{

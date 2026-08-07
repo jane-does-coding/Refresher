@@ -27,33 +27,11 @@ function Welcome() {
 	const g = useGuide();
 	return (
 		<div className="flex h-full min-h-0 gap-[1.6vw]">
-			<div className="relative flex w-[36%] shrink-0 flex-col items-center justify-center gap-[1.4vh] overflow-hidden rounded-[1.4vh] border-[0.3vh] border-dashed border-choco/25 bg-accent-soft/70 p-[1.5vh] text-center">
+			<div className="hatch relative flex w-[36%] shrink-0 flex-col items-center justify-center gap-[1.4vh] overflow-hidden rounded-[1.4vh] border-[0.3vh] border-dashed border-choco/25 bg-accent-soft/70 p-[1.5vh] text-center">
 				<span className="tape absolute -top-[1.2vh] left-1/2 h-[2.4vh] w-[9vh] -translate-x-1/2" />
 				<Icon
-					name="strawberry"
-					className="twinkle absolute top-[6vh] left-[3vh] text-[4.2vh] text-accent"
-					strokeWidth={2.2}
-				/>
-				<Icon
-					name="sparkle"
-					className="twinkle absolute top-[10vh] right-[3.5vh] text-[3.6vh] text-accent"
-					strokeWidth={2.2}
-					style={{ animationDelay: "0.6s" }}
-				/>
-				<Icon
-					name="ribbon"
-					className="wiggle absolute bottom-[6vh] left-[4vh] text-[4vh] text-accent"
-					strokeWidth={2.2}
-				/>
-				<Icon
-					name="cake"
-					className="twinkle absolute right-[4vh] bottom-[8vh] text-[3.8vh] text-accent"
-					strokeWidth={2.2}
-					style={{ animationDelay: "1.1s" }}
-				/>
-				<Icon
 					name="boba"
-					className="float text-[15vh] text-choco/80"
+					className="text-[15vh] text-choco/80"
 					strokeWidth={1.2}
 				/>
 				<h1 className="cute-notebook text-[7.5vh] leading-[0.9] font-semibold text-ink">
@@ -63,9 +41,19 @@ function Welcome() {
 					make a website that looks like you made it, then go buy yourself
 					something cold and sweet.
 				</p>
-				<Sticker rotate="2deg" className="mt-[0.5vh]" icon="ribbon">
-					made by girls, for girls
-				</Sticker>
+				<div className="mt-[0.5vh] flex flex-col items-center gap-[0.7vh]">
+					<Sticker rotate="2deg" icon="ribbon">
+						Athena · girls only
+					</Sticker>
+					<a
+						href="https://hackclub.com"
+						target="_blank"
+						rel="noopener noreferrer"
+						className="cute-notebook text-[2.05vh] mt-[1vh] leading-none text-choco/60 underline decoration-choco/30 underline-offset-[0.5vh] hover:text-accent"
+					>
+						a Hack Club program ↗
+					</a>
+				</div>
 			</div>
 
 			<div className="flex min-h-0 flex-1 flex-col justify-center gap-[2vh]">
@@ -388,14 +376,22 @@ const COMMANDS: { cmd: string; out: string[]; note: string }[] = [
 		out: ["index.html   script.js   style.css"],
 		note: "what's in here?",
 	},
-	{ cmd: "git init", out: ["Initialised empty Git repository"], note: "start tracking" },
+	{
+		cmd: "git init",
+		out: ["Initialised empty Git repository"],
+		note: "start tracking",
+	},
 	{ cmd: "git add .", out: [], note: "stage every change" },
 	{
 		cmd: 'git commit -m "my site"',
 		out: ["[main 4f2a1c] my site", " 3 files changed"],
 		note: "save a snapshot",
 	},
-	{ cmd: "git push", out: ["Everything up-to-date"], note: "send it to GitHub" },
+	{
+		cmd: "git push",
+		out: ["Everything up-to-date"],
+		note: "send it to GitHub",
+	},
 ];
 
 function TerminalStep() {
@@ -427,10 +423,7 @@ function TerminalStep() {
 							<span className="ml-[0.4vw] text-choco/50">— {c.note}</span>
 						</Chip>
 					))}
-					<Chip
-						onClick={() => setLines(["# cleared"])}
-						className="ml-auto"
-					>
+					<Chip onClick={() => setLines(["# cleared"])} className="ml-auto">
 						clear
 					</Chip>
 				</div>
@@ -529,7 +522,6 @@ function GithubStep() {
 	);
 }
 
-
 /* ------------------------------------------------------------------ */
 /* 8 · font                                                             */
 /* ------------------------------------------------------------------ */
@@ -547,7 +539,11 @@ function FontStep() {
 				sub="Serifs are the little feet on the ends of letters. That's the entire difference between the first two, and it changes how the page feels."
 			/>
 			<div className="flex min-h-0 flex-1 gap-[1.2vw]">
-				<Tray title="click through them" icon="letters" className="w-[42%] shrink-0">
+				<Tray
+					title="click through them"
+					icon="letters"
+					className="w-[42%] shrink-0"
+				>
 					<div className="flex min-h-0 flex-1 flex-col gap-[1vh]">
 						{FONTS.map((f, i) => (
 							<PickCard
@@ -612,8 +608,8 @@ function FontStep() {
 								hi, i&apos;m {displayName(g.name)}
 							</p>
 							<p className="max-w-[62ch] text-[2.3vh] leading-[1.45] text-choco/80">
-								I built this website from an empty folder on a Tuesday. It has my
-								name on it, a photo I like, and three things I made.
+								I built this website from an empty folder on a Tuesday. It has
+								my name on it, a photo I like, and three things I made.
 							</p>
 							<p className="text-[1.9vh] tracking-[0.25vw] text-choco/50 uppercase">
 								about · projects · say hi
@@ -708,9 +704,7 @@ function ShipStep() {
 								<code className="rounded-[0.8vh] border-[0.25vh] border-dashed border-choco/30 bg-white px-[1vw] py-[0.6vh] font-mono text-[2.3vh] text-ink">
 									{handle}.github.io
 								</code>
-								<Hint>
-									send it to one person before you tidy anything up.
-								</Hint>
+								<Hint>send it to one person before you tidy anything up.</Hint>
 							</div>
 						) : (
 							<Hint>nothing actually deploys here. this is a rehearsal.</Hint>
@@ -758,7 +752,9 @@ function SubmitStep() {
 	const [done, setDone] = useState<Record<string, boolean>>({});
 	const toggle = (k: string) => setDone((d) => ({ ...d, [k]: !d[k] }));
 	const handle =
-		displayName(g.name).toLowerCase().replace(/[^a-z0-9]/g, "") || "yourname";
+		displayName(g.name)
+			.toLowerCase()
+			.replace(/[^a-z0-9]/g, "") || "yourname";
 	const needs = [
 		`your live link, like ${handle}.github.io`,
 		"your repo link, so we can see the code",
@@ -777,7 +773,11 @@ function SubmitStep() {
 				}
 			/>
 			<div className="flex min-h-0 flex-1 gap-[1.2vw]">
-				<Tray title="have these ready" icon="checklist" className="w-[46%] shrink-0">
+				<Tray
+					title="have these ready"
+					icon="checklist"
+					className="w-[46%] shrink-0"
+				>
 					<div className="flex min-h-0 flex-1 flex-col justify-center gap-[0.3vh]">
 						{needs.map((t) => (
 							<CheckRow key={t} done={!!done[t]} onToggle={() => toggle(t)}>
@@ -807,7 +807,9 @@ function SubmitStep() {
 					<code className="rounded-[0.7vh] border-[0.25vh] border-dashed border-choco/25 bg-cream px-[0.9vw] py-[0.5vh] font-mono text-[1.7vh] break-all text-choco/70">
 						{FORM_URL}
 					</code>
-					<Hint>opens in a new tab, so you won&apos;t lose your place here.</Hint>
+					<Hint>
+						opens in a new tab, so you won&apos;t lose your place here.
+					</Hint>
 				</div>
 			</div>
 		</div>
@@ -873,8 +875,8 @@ function TreatStep() {
 								{chosen.name}
 							</span>
 							<span className="cute-notebook text-[2vh] leading-[1.2] text-choco/70">
-								earned by <strong>{displayName(g.name)}</strong>{" "}
-								for finishing a website that did not exist this morning
+								earned by <strong>{displayName(g.name)}</strong> for finishing a
+								website that did not exist this morning
 							</span>
 							<span className="mt-[0.4vh] flex w-full items-center justify-center gap-[0.4vw] border-t-[0.25vh] border-dashed border-choco/25 pt-[0.6vh]">
 								<Icon name="ribbon" className="text-[2vh] text-choco/45" />

@@ -209,9 +209,20 @@ export function Guide() {
 							← back
 						</Plaque>
 
-						<span className="cute-notebook hidden items-center gap-[0.5vw] truncate text-[1.9vh] text-choco/70 md:flex">
-							made by girls, for girls
-							<Icon name="ribbon" className="text-[2.2vh]" />
+						<span className="cute-notebook hidden items-center gap-[0.5vw] truncate text-[1.85vh] text-choco/70 md:flex">
+							<Icon name="ribbon" className="text-[2.1vh] text-accent" />
+							<span>
+								Athena · girls only · a{" "}
+								<a
+									href="https://hackclub.com"
+									target="_blank"
+									rel="noopener noreferrer"
+									className="underline decoration-choco/30 underline-offset-[0.4vh] hover:text-accent"
+								>
+									Hack Club
+								</a>{" "}
+								program
+							</span>
 						</span>
 
 						{onWelcome ? (
@@ -220,12 +231,12 @@ export function Guide() {
 							</span>
 						) : atEnd ? (
 							<Plaque onClick={() => setIndex(0)} className={FOOTER_PLAQUE}>
-									start over ↺
-								</Plaque>
+								start over ↺
+							</Plaque>
 						) : (
 							<Plaque onClick={() => go(1)} className={FOOTER_PLAQUE}>
-									next →
-								</Plaque>
+								next →
+							</Plaque>
 						)}
 					</footer>
 				</div>
@@ -233,7 +244,6 @@ export function Guide() {
 		</GuideProvider>
 	);
 }
-
 
 /**
  * Bucket slides by the chapter in their crumb ("html · headings" → "html") so
