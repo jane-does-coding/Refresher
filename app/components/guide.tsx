@@ -30,7 +30,7 @@ export function Guide() {
 		// "I already made one" skips the whole guide and goes straight to the form.
 		if (track === "submit")
 			return SLIDES.filter((s) =>
-				["welcome", "submit", "treat"].includes(s.id),
+				["welcome", "submit"].includes(s.id),
 			);
 		return SLIDES.filter((s) => !(s.setupOnly && track === "pro"));
 	}, [track]);

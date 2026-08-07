@@ -63,7 +63,8 @@ export const FONTS: FontChoice[] = [
 	},
 	{
 		name: "Monospace",
-		blurb: "every letter takes up the same width. looks like code, in a good way.",
+		blurb:
+			"every letter takes up the same width. looks like code, in a good way.",
 		stack: "var(--font-geist-mono), ui-monospace, monospace",
 		css: "font-family: monospace;",
 	},
@@ -89,7 +90,8 @@ export const LAYOUTS: LayoutChoice[] = [
 	},
 	{
 		name: "The Card",
-		blurb: "one small card in the middle of the screen. says very little on purpose.",
+		blurb:
+			"one small card in the middle of the screen. says very little on purpose.",
 		centered: true,
 	},
 ];
@@ -127,9 +129,12 @@ export const DESSERTS: { icon: IconName; name: string; note: string }[] = [
 		name: "Slice of Something",
 		note: "arguably not a drink. still counts.",
 	},
-	{ icon: "cone", name: "Soft Serve Swirl", note: "you're on a timer with this one." },
+	{
+		icon: "cone",
+		name: "Soft Serve Swirl",
+		note: "you're on a timer with this one.",
+	},
 ];
-
 
 export const OSES: {
 	id: string;
@@ -206,13 +211,6 @@ export const CHAPTERS: Chapter[] = [
 		label: "Make it do something",
 		icon: "bolt",
 		blurb: "how it behaves. the part that still feels like a trick.",
-		bullets: [],
-	},
-	{
-		id: "ship",
-		label: "Put it online",
-		icon: "rocket",
-		blurb: "a real address, then send it in and go get your drink.",
 		bullets: [],
 	},
 ];

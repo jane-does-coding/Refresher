@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState, type ReactNode } from "react";
-import { CHAPTERS, DESSERTS, FONTS, OSES } from "../lib/guide-data";
+import { CHAPTERS, FONTS, OSES } from "../lib/guide-data";
 import { LESSONS } from "../lib/curriculum";
 import { displayName, useGuide } from "./guide-context";
 import { Icon, type IconName } from "./icons";
@@ -366,102 +366,6 @@ function MiniEditor({ className = "" }: { className?: string }) {
 }
 
 /* ------------------------------------------------------------------ */
-/* 4 · the terminal (beginner)                                          */
-/* ------------------------------------------------------------------ */
-
-const COMMANDS: { cmd: string; out: string[]; note: string }[] = [
-	{ cmd: "pwd", out: ["/Users/you/my-website"], note: "where am i?" },
-	{
-		cmd: "ls",
-		out: ["index.html   script.js   style.css"],
-		note: "what's in here?",
-	},
-	{
-		cmd: "git init",
-		out: ["Initialised empty Git repository"],
-		note: "start tracking",
-	},
-	{ cmd: "git add .", out: [], note: "stage every change" },
-	{
-		cmd: 'git commit -m "my site"',
-		out: ["[main 4f2a1c] my site", " 3 files changed"],
-		note: "save a snapshot",
-	},
-	{
-		cmd: "git push",
-		out: ["Everything up-to-date"],
-		note: "send it to GitHub",
-	},
-];
-
-function TerminalStep() {
-	const [lines, setLines] = useState<string[]>([
-		"# nothing you type in here can break anything",
-	]);
-
-	const run = (i: number) => {
-		const c = COMMANDS[i];
-		setLines((prev) => [...prev, `$ ${c.cmd}`, ...c.out].slice(-9));
-	};
-
-	return (
-		<div className="flex h-full min-h-0 flex-col gap-[1.4vh]">
-			<StepHead
-				chapter="ship"
-				title="The terminal is a text box"
-				sub="To publish, you type six words into a terminal. You type a word, the computer does that thing. Have a go on this fake one first."
-			/>
-			<Tray
-				title="tap a command to run it"
-				icon="terminal"
-				className="flex-1 gap-[1.2vh]"
-			>
-				<div className="flex shrink-0 flex-wrap items-center gap-[0.6vw]">
-					{COMMANDS.map((c, i) => (
-						<Chip key={c.cmd} onClick={() => run(i)}>
-							<code className="font-mono">{c.cmd}</code>
-							<span className="ml-[0.4vw] text-choco/50">— {c.note}</span>
-						</Chip>
-					))}
-					<Chip onClick={() => setLines(["# cleared"])} className="ml-auto">
-						clear
-					</Chip>
-				</div>
-				<div className="flex min-h-0 flex-1 flex-col overflow-hidden rounded-[1vh] border-[0.3vh] border-choco/30 bg-[#2b1d14] shadow-[inset_0_0_2vh_rgba(0,0,0,0.4)]">
-					<div className="flex shrink-0 items-center gap-[0.4vw] border-b-[0.2vh] border-white/10 px-[0.8vw] py-[0.5vh]">
-						<span className="h-[1vh] w-[1vh] rounded-full bg-[#f18aa0]" />
-						<span className="h-[1vh] w-[1vh] rounded-full bg-[#f0cf9e]" />
-						<span className="h-[1vh] w-[1vh] rounded-full bg-[#a8c686]" />
-						<span className="ml-[0.5vw] font-mono text-[1.5vh] text-white/40">
-							you — terminal
-						</span>
-					</div>
-					<div className="flex min-h-0 flex-1 flex-col justify-end gap-[0.15vh] px-[1vw] py-[0.8vh]">
-						{lines.map((l, i) => (
-							<p
-								key={`${i}-${l}`}
-								className={`pop-in font-mono text-[1.8vh] leading-[1.35] ${
-									l.startsWith("$")
-										? "text-[#f7c9d2]"
-										: l.startsWith("#")
-											? "text-white/35 italic"
-											: "text-white/75"
-								}`}
-							>
-								{l}
-							</p>
-						))}
-						<p className="font-mono text-[1.8vh] leading-[1.35] text-[#f7c9d2]">
-							$ <span className="caret">▋</span>
-						</p>
-					</div>
-				</div>
-			</Tray>
-		</div>
-	);
-}
-
-/* ------------------------------------------------------------------ */
 /* 5 · github (beginner)                                                */
 /* ------------------------------------------------------------------ */
 
@@ -623,123 +527,6 @@ function FontStep() {
 }
 
 /* ------------------------------------------------------------------ */
-/* 12 · ship it                                                         */
-/* ------------------------------------------------------------------ */
-
-const DEPLOY_LOG = [
-	"$ git add .",
-	"$ git commit -m 'made it mine'",
-	"[main 4f2a1c] made it mine",
-	"$ git push",
-	"Enumerating objects: 12, done.",
-	"→ GitHub Pages: building…",
-	"→ live!",
-];
-
-function ShipStep() {
-	const g = useGuide();
-	const [shown, setShown] = useState(0);
-	const [started, setStarted] = useState(false);
-	const handle =
-		displayName(g.name)
-			.toLowerCase()
-			.replace(/[^a-z0-9]/g, "") || "yourname";
-
-	useEffect(() => {
-		if (!started || shown >= DEPLOY_LOG.length) return;
-		const t = setTimeout(() => setShown((n) => n + 1), 320);
-		return () => clearTimeout(t);
-	}, [started, shown]);
-
-	const live = shown >= DEPLOY_LOG.length;
-
-	return (
-		<div className="flex h-full min-h-0 flex-col gap-[1.4vh]">
-			<StepHead
-				chapter="ship"
-				title="Put it on the internet"
-				sub="Right now it only exists on your laptop. Push it to GitHub, switch on Pages, and it becomes an address anyone can open."
-			/>
-			<Tray title="the big scary button" icon="rocket" className="flex-1">
-				<div className="flex min-h-0 flex-1 gap-[1.2vw]">
-					<div className="flex w-[40%] shrink-0 flex-col items-center justify-center gap-[1vh]">
-						<button
-							type="button"
-							onClick={() => setStarted(true)}
-							disabled={started}
-							className={`press relative flex h-[21vh] w-[21vh] cursor-pointer flex-col items-center justify-center gap-[0.6vh] rounded-full border-[0.5vh] text-center ${
-								live
-									? "border-solid border-accent bg-accent-soft"
-									: "border-solid border-accent bg-accent text-white hover:brightness-105 disabled:cursor-wait"
-							}`}
-						>
-							<Icon
-								name={live ? "confetti" : "rocket"}
-								className={`text-[7vh] ${live ? "text-accent" : "float"}`}
-								strokeWidth={1.5}
-							/>
-							<span
-								className={`cute-notebook text-[3vh] leading-[1] ${
-									live ? "text-accent" : "text-white"
-								}`}
-							>
-								{live ? "shipped!" : started ? "shipping…" : "SHIP IT"}
-							</span>
-							{live && (
-								<>
-									<Icon
-										name="sparkle"
-										className="twinkle absolute -top-[1vh] -left-[1vh] text-[3vh] text-accent"
-									/>
-									<Icon
-										name="sparkle"
-										className="twinkle absolute -right-[1vh] bottom-[1vh] text-[2.6vh] text-accent"
-										style={{ animationDelay: "0.4s" }}
-									/>
-								</>
-							)}
-						</button>
-						{live ? (
-							<div className="pop-in flex flex-col items-center gap-[0.4vh]">
-								<code className="rounded-[0.8vh] border-[0.25vh] border-dashed border-choco/30 bg-white px-[1vw] py-[0.6vh] font-mono text-[2.3vh] text-ink">
-									{handle}.github.io
-								</code>
-								<Hint>send it to one person before you tidy anything up.</Hint>
-							</div>
-						) : (
-							<Hint>nothing actually deploys here. this is a rehearsal.</Hint>
-						)}
-					</div>
-					<div className="flex min-h-0 flex-1 flex-col overflow-hidden rounded-[1vh] border-[0.3vh] border-choco/30 bg-[#2b1d14] px-[1.2vw] py-[0.8vh]">
-						<div className="flex min-h-0 flex-1 flex-col justify-center gap-[0.3vh]">
-							{DEPLOY_LOG.slice(0, shown).map((l, i) => (
-								<p
-									key={l}
-									className={`pop-in font-mono text-[2.1vh] leading-[1.4] ${
-										l.startsWith("$")
-											? "text-[#f7c9d2]"
-											: i === DEPLOY_LOG.length - 1
-												? "text-[#a8c686]"
-												: "text-white/60"
-									}`}
-								>
-									{l}
-								</p>
-							))}
-							{!started && (
-								<p className="font-mono text-[2.1vh] text-white/30 italic">
-									# waiting for you to press the button
-								</p>
-							)}
-						</div>
-					</div>
-				</div>
-			</Tray>
-		</div>
-	);
-}
-
-/* ------------------------------------------------------------------ */
 /* 13 · the treat                                                       */
 /* ------------------------------------------------------------------ */
 /* send it in                                                          */
@@ -816,95 +603,6 @@ function SubmitStep() {
 	);
 }
 
-/* ------------------------------------------------------------------ */
-
-function TreatStep() {
-	const g = useGuide();
-	const [pick, setPick] = useState(-1);
-	const chosen = pick >= 0 ? DESSERTS[pick] : null;
-
-	return (
-		<div className="flex h-full min-h-0 flex-col gap-[1.4vh]">
-			<StepHead
-				chapter="ship"
-				title="Go get your Refresher"
-				sub="You started with an empty folder and ended up with a website. Pick something cold and go and get it."
-			/>
-			<div className="flex min-h-0 flex-1 gap-[1.2vw]">
-				<Tray title="pick one" icon="candy" className="w-[52%] shrink-0">
-					<div className="flex min-h-0 flex-1 flex-col gap-[1vh]">
-						{DESSERTS.map((d, i) => (
-							<PickCard
-								key={d.name}
-								selected={pick === i}
-								onClick={() => setPick(i)}
-								className="min-h-0 flex-1 flex-row items-center gap-[1vw]"
-							>
-								<Icon
-									name={d.icon}
-									className={`text-[5vh] ${
-										pick === i ? "text-accent" : "text-choco/50"
-									}`}
-								/>
-								<span className="min-w-0">
-									<span className="cute-notebook block text-[2.3vh] leading-[1.1] text-ink">
-										{d.name}
-									</span>
-									<span className="cute-notebook block text-[1.8vh] leading-[1.15] text-choco/60">
-										{d.note}
-									</span>
-								</span>
-							</PickCard>
-						))}
-					</div>
-				</Tray>
-
-				<div className="flex min-h-0 flex-1 items-center justify-center">
-					{chosen ? (
-						<div className="pop-in relative flex w-full flex-col items-center gap-[0.6vh] rounded-[1.2vh] border-[0.35vh] border-dashed border-choco/30 bg-paper p-[1.8vh] text-center shadow-[0.5vh_0.7vh_0_rgba(107,63,34,0.15)]">
-							<span className="tape absolute -top-[1.2vh] left-1/2 h-[2.4vh] w-[10vh] -translate-x-1/2" />
-							<span className="cute-notebook text-[1.8vh] tracking-[0.2vw] text-choco/55">
-								— ONE (1) DESSERT —
-							</span>
-							<Icon
-								name={chosen.icon}
-								className="float text-[8vh] text-accent"
-								strokeWidth={1.4}
-							/>
-							<span className="cute-notebook text-[3vh] leading-[1.05] font-semibold text-ink">
-								{chosen.name}
-							</span>
-							<span className="cute-notebook text-[2vh] leading-[1.2] text-choco/70">
-								earned by <strong>{displayName(g.name)}</strong> for finishing a
-								website that did not exist this morning
-							</span>
-							<span className="mt-[0.4vh] flex w-full items-center justify-center gap-[0.4vw] border-t-[0.25vh] border-dashed border-choco/25 pt-[0.6vh]">
-								<Icon name="ribbon" className="text-[2vh] text-choco/45" />
-								<span className="cute-notebook text-[1.75vh] text-choco/55">
-									made by girls, for girls. redeem immediately
-								</span>
-							</span>
-						</div>
-					) : (
-						<div className="flex flex-col items-center gap-[0.8vh] text-center">
-							<Icon
-								name="gift"
-								className="wiggle text-[8vh] text-choco/35"
-								strokeWidth={1.4}
-							/>
-							<p className="cute-notebook text-[2.2vh] leading-[1.25] text-choco/60">
-								pick one and your voucher prints here
-							</p>
-						</div>
-					)}
-				</div>
-			</div>
-		</div>
-	);
-}
-
-/* ------------------------------------------------------------------ */
-
 /** Look a lesson up by id so the deck below reads as an explicit running order. */
 function lessonSlide(id: string): Slide {
 	const lesson = LESSONS.find((l) => l.id === id);
@@ -955,14 +653,5 @@ export const SLIDES: Slide[] = [
 	lessonSlide("js-select"),
 	lessonSlide("js-click"),
 
-	// Publishing needs a terminal, so it turns up where it's used.
-	{
-		id: "terminal",
-		crumb: "ship · the terminal",
-		Body: TerminalStep,
-		setupOnly: true,
-	},
-	{ id: "ship", crumb: "ship it", Body: ShipStep },
 	{ id: "submit", crumb: "send it in", Body: SubmitStep },
-	{ id: "treat", crumb: "claim your treat", Body: TreatStep },
 ];
