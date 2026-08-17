@@ -54,7 +54,7 @@ const head = (c: CodeCtx) => `<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>${c.name} — my corner of the internet</title>
+    <title>${c.name} - my corner of the internet</title>
   </head>
   <body>`;
 
@@ -62,7 +62,7 @@ const headLinked = (c: CodeCtx) => `<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>${c.name} — my corner of the internet</title>
+    <title>${c.name} - my corner of the internet</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>`;
@@ -282,7 +282,11 @@ export const LESSONS: Lesson[] = [
 				note: "Browsers open index.html by default, so don't rename that one.",
 			},
 		],
-		files: { "index.html": () => "", "style.css": () => "", "script.js": () => "" },
+		files: {
+			"index.html": () => "",
+			"style.css": () => "",
+			"script.js": () => "",
+		},
 		glossary: [
 			{
 				term: "index.html",
@@ -299,7 +303,7 @@ export const LESSONS: Lesson[] = [
 		crumb: "html · the skeleton",
 		chapter: "html",
 		title: "Every page starts like this",
-		sub: "The same chunk of setup goes at the top of every HTML file. Type it out by hand once so you know what's in it, then copy it forever after.",
+		sub: "The skeleton of every HTML Website, you'll not need to write it out by hand every time you make a new site",
 		todo: [
 			"type this into index.html",
 			"change the title to your own name",
@@ -459,7 +463,8 @@ ${foot(c)}`,
 			"swap the ul for an ol and watch the bullets turn into numbers",
 		],
 		notes: {
-			"index.html": "Only li can sit directly inside a ul. Anything else goes inside the li.",
+			"index.html":
+				"Only li can sit directly inside a ul. Anything else goes inside the li.",
 		},
 		files: {
 			"index.html": (c) => `${head(c)}
@@ -550,7 +555,8 @@ ${linkCard}
 
 ${foot(c)}`,
 		},
-		milestone: "HTML done. That's a real web page. Next, making it look like something.",
+		milestone:
+			"HTML done. That's a real web page. Next, making it look like something.",
 		glossary: [
 			{
 				term: "file://",
@@ -620,15 +626,18 @@ ${foot(c)}`,
 			"style.css":
 				"h2 by tag name, .card by class, #cheer by id. The dot and the hash are the whole difference.",
 			"index.html":
-				"This is what those selectors are pointing at. class=\"card\" and id=\"cheer\" are the labels you added earlier.",
+				'This is what those selectors are pointing at. class="card" and id="cheer" are the labels you added earlier.',
 		},
 		files: { "style.css": cssSelectors },
-				glossary: [
+		glossary: [
 			{
 				term: ".class",
 				what: "A dot means find every element with this class. Reusable, so it's the one you'll use most.",
 			},
-			{ term: "#id", what: "A hash means find the single element with this id." },
+			{
+				term: "#id",
+				what: "A hash means find the single element with this id.",
+			},
 			{
 				term: "declaration",
 				what: "One property: value; pair. A rule is a selector plus a { } block full of declarations.",
@@ -682,7 +691,8 @@ ${foot(c)}`,
 			"everything inside body picks up the font for free",
 		],
 		notes: {
-			"style.css": "The commas are fallbacks. Georgia first, and any old serif if Georgia is missing.",
+			"style.css":
+				"The commas are fallbacks. Georgia first, and any old serif if Georgia is missing.",
 		},
 		files: { "style.css": cssFonts },
 		glossary: [
@@ -787,7 +797,8 @@ ${foot(c)}`,
 				"transition belongs on the normal rule, so it animates on the way in and on the way out.",
 		},
 		files: { "style.css": cssFinal },
-		milestone: "CSS done. Your colours, your font, your layout. One chapter left.",
+		milestone:
+			"CSS done. Your colours, your font, your layout. One chapter left.",
 		glossary: [
 			{
 				term: ":hover",
@@ -865,7 +876,8 @@ ${footScripted(c)}`,
 			"change its textContent, then refresh",
 		],
 		notes: {
-			"script.js": "const for things that never get reassigned, let for things that change.",
+			"script.js":
+				"const for things that never get reassigned, let for things that change.",
 		},
 		files: {
 			"script.js": () => `const button = document.querySelector("#cheer");

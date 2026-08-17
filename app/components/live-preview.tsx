@@ -38,10 +38,9 @@ export function LivePreview({
 			: "";
 
 		return inlined.includes("</head>")
-			? inlined.replace("</head>", `${style}\n</head>`).replace(
-					"</body>",
-					`${script}\n</body>`,
-				)
+			? inlined
+					.replace("</head>", `${style}\n</head>`)
+					.replace("</body>", `${script}\n</body>`)
 			: `${style}${inlined}${script}`;
 	}, [html, css, js]);
 
@@ -74,9 +73,9 @@ export function LivePreview({
 				<div className="flex min-h-0 flex-1 flex-col items-center justify-center gap-[0.8vh] p-[1.5vh] text-center">
 					<Icon name="fileCode" className="text-[6vh] text-choco/25" />
 					<p className="cute-notebook text-[2.1vh] leading-[1.3] text-choco/45">
-						an empty file is an empty page.
+						Your file is empty so this page is too
 						<br />
-						that&apos;s not a bug — you just haven&apos;t written anything yet.
+						that&apos;s not a bug, you just haven&apos;t written anything yet.
 					</p>
 				</div>
 			)}

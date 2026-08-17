@@ -186,9 +186,9 @@ export type Chapter = {
 export const CHAPTERS: Chapter[] = [
 	{
 		id: "setup",
-		label: "Set up your kitchen",
+		label: "Set up your workspace",
 		icon: "toolbox",
-		blurb: "install VS Code, make a GitHub account. you only do this once.",
+		blurb: "install VS Code, make a GitHub account, etc.",
 		bullets: [],
 		setupOnly: true,
 	},
@@ -196,21 +196,21 @@ export const CHAPTERS: Chapter[] = [
 		id: "html",
 		label: "Write the HTML",
 		icon: "code",
-		blurb: "the structure. every word and every box on the page.",
+		blurb: "Write the structure of your website.",
 		bullets: [],
 	},
 	{
 		id: "css",
 		label: "Style it with CSS",
 		icon: "braces",
-		blurb: "how it looks. colour, type, spacing, layout.",
+		blurb: "Style how your website looks",
 		bullets: [],
 	},
 	{
 		id: "js",
 		label: "Make it do something",
 		icon: "bolt",
-		blurb: "how it behaves. the part that still feels like a trick.",
+		blurb: "Add the Javascript to make it functional",
 		bullets: [],
 	},
 ];

@@ -28,21 +28,21 @@ function Welcome() {
 	return (
 		<div className="flex h-full min-h-0 gap-[1.6vw]">
 			<div className="hatch relative flex w-[36%] shrink-0 flex-col items-center justify-center gap-[1.4vh] overflow-hidden rounded-[1.4vh] border-[0.3vh] border-dashed border-choco/25 bg-accent-soft/70 p-[1.5vh] text-center">
-				<span className="tape absolute -top-[1.2vh] left-1/2 h-[2.4vh] w-[9vh] -translate-x-1/2" />
-				<Icon
+				{/* <Icon
 					name="boba"
 					className="text-[15vh] text-choco/80"
 					strokeWidth={1.2}
-				/>
+				/> */}
+				<img src="/boba.png" className="w-[15vw] rounded-[1vh]" alt="" />
 				<h1 className="cute-notebook text-[7.5vh] leading-[0.9] font-semibold text-ink">
 					Refresher
 				</h1>
 				<p className="cute-notebook max-w-[28ch] text-[2.5vh] leading-[1.25] text-choco/75">
-					make a website that looks like you made it, then go buy yourself
-					something cold and sweet.
+					make a website, and get a $10 grant to go buy yourself something cold
+					and sweet.
 				</p>
 				<div className="mt-[0.5vh] flex flex-col items-center gap-[0.7vh]">
-					<Sticker rotate="2deg" icon="ribbon">
+					<Sticker rotate="0deg" icon="ribbon">
 						Athena · girls only
 					</Sticker>
 					<a
@@ -58,30 +58,35 @@ function Welcome() {
 
 			<div className="flex min-h-0 flex-1 flex-col justify-center gap-[2vh]">
 				<div>
-					<h2 className="cute-notebook text-[4.4vh] leading-[1.05] font-semibold text-ink">
-						So what is this, exactly?
+					<h2 className="cute-notebook text-[4.4vh] leading-[1.05] font-semibold text-ink mb-[2vh]">
+						What is Refresher?
 					</h2>
 					<p className="cute-notebook text-[2.5vh] leading-[1.3] text-choco/75">
-						It walks you through building your own website from an empty folder,
-						in real HTML, CSS and JavaScript. You pick how it looks, and every
-						line of code you write is for your page, not a practice one.
+						If this is your first time ever building a website, you can follow
+						the guide and make your HTML, CSS, and JS personal website, and
+						submit it! And if you already know how to make a website, then make
+						one and submit it for a Refresher!
 					</p>
 				</div>
 
 				<div className="grid grid-cols-2 gap-[1.1vh]">
 					{[
-						["1", "Pick how it looks", "colours, font, layout. all yours"],
-						["2", "Write the code", "html, then css, then javascript"],
-						["3", "Put it online", "a real link you can send people"],
-						["4", "Get a Refresher", "for finishing. that's the deal"],
+						[
+							"1",
+							"Complete the Setup",
+							"get the VS code, Github account, etc.",
+						],
+						["2", "Write the HTML", "setup the website"],
+						["3", "Write the CSS", "make your website pretty"],
+						["4", "Write the JS", "ALL DONE - get a refrsher"],
 					].map(([n, t, s]) => (
 						<div
 							key={n}
 							className="flex items-start gap-[0.7vw] rounded-[1vh] border-[0.25vh] border-dashed border-choco/25 bg-paper px-[1vw] py-[1.1vh]"
 						>
-							<span className="cute-notebook flex h-[3.2vh] w-[3.2vh] shrink-0 items-center justify-center rounded-full bg-accent text-[2.1vh] text-white">
+							{/* <span className="cute-notebook flex h-[3.2vh] w-[3.2vh] shrink-0 items-center justify-center rounded-full bg-accent text-[2.1vh] text-white">
 								{n}
-							</span>
+							</span> */}
 							<span className="min-w-0">
 								<span className="cute-notebook block text-[2.5vh] leading-[1.1] text-ink">
 									{t}
@@ -95,7 +100,7 @@ function Welcome() {
 				</div>
 
 				<div className="flex flex-col gap-[0.9vh]">
-					<p className="cute-notebook text-[2.9vh] leading-none text-ink">
+					<p className="cute-notebook text-[2.9vh] leading-none text-ink my-[1vh]">
 						Where are you starting from?
 					</p>
 					<div className="flex gap-[0.9vw]">
@@ -108,13 +113,13 @@ function Welcome() {
 						<TrackButton
 							icon="bolt"
 							title="Made one before"
-							sub="skip setup, start at the code"
+							sub="start at the code"
 							onClick={() => g.start("pro")}
 						/>
 						<TrackButton
 							icon="envelope"
 							title="Submit your own"
-							sub="already have a site? send it in"
+							sub="made one without a guide"
 							onClick={() => g.start("submit")}
 						/>
 					</div>
@@ -138,9 +143,10 @@ function TrackButton({
 	return (
 		<Plaque
 			onClick={onClick}
-			className="flex flex-1 items-center gap-[0.7vw] px-[1vw] py-[1.5vh] text-left"
+			className="flex flex-1 items-center justify-center gap-[0.7vw] px-[1vw] py-[1.5vh] text-center"
 		>
-			<Icon name={icon} className="text-[4vh] text-cream/85" />
+			{/* 			<Icon name={icon} className="text-[4vh] text-cream/85" />
+			 */}{" "}
 			<span className="min-w-0">
 				<span className="block text-[2.5vh] leading-[1.15] font-semibold">
 					{title}
@@ -160,11 +166,11 @@ function TrackButton({
 function Outline() {
 	const g = useGuide();
 	return (
-		<div className="flex h-full min-h-0 flex-col gap-[1.4vh]">
+		<div className="flex h-full min-h-0 flex-col gap-[1.4vh] pt-[2vh]">
 			<StepHead
 				kicker="the whole thing on one page"
-				title="Here's the plan"
-				sub="Five chapters. Empty folder at the top, real website at the bottom."
+				title="Table of Contents"
+				sub="Setup, HTML, CSS, JS, Deploy"
 			/>
 			<div className="flex min-h-0 flex-1 flex-col justify-center gap-[1.1vh]">
 				{CHAPTERS.map((c, i) => {
@@ -179,7 +185,7 @@ function Outline() {
 							<span className="cute-notebook w-[3.6vh] shrink-0 text-[2.2vh] text-choco/40">
 								0{i + 1}
 							</span>
-							<Icon name={c.icon} className="text-[3.6vh] text-accent" />
+							{/* <Icon name={c.icon} className="text-[3.6vh] text-accent" /> */}
 							<span className="min-w-0 flex-1">
 								<span
 									className={`cute-notebook block text-[2.9vh] leading-[1.1] font-semibold text-ink ${
@@ -193,7 +199,7 @@ function Outline() {
 								</span>
 							</span>
 							{skipped && (
-								<Sticker rotate="3deg">skipping, you got this</Sticker>
+								<Sticker rotate="0deg">skipping, you got this</Sticker>
 							)}
 						</div>
 					);

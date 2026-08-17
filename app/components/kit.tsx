@@ -48,7 +48,7 @@ export function StepHead({
 	const label = chapter ? chapterLabel(chapter) : kicker;
 	return (
 		<div className="flex shrink-0 flex-col items-center gap-[0.7vh] text-center">
-			{label && (
+			{/* {label && (
 				<span className="flex items-center gap-[0.9vw] text-[1.55vh] leading-none text-choco/45 capitalize">
 					<span className="h-[0.2vh] w-[3.5vh] bg-choco/20" />
 					<span
@@ -60,7 +60,7 @@ export function StepHead({
 					</span>
 					<span className="h-[0.2vh] w-[3.5vh] bg-choco/20" />
 				</span>
-			)}
+			)} */}
 			<h1 className="cute-notebook text-[5.2vh] leading-[1.02] font-semibold text-ink">
 				{title}
 			</h1>
